@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chars {
+public class Chars:MonoBehaviour {
 	public string meme;
 	private Stats stat;
 	private Skill[] skills;
 	private Tag[] tags;
 	private Status[] statuses;
-	//private int pos;
+	//public int pos;
 
-	Chars(string meme, Stats stat, Skill[] skills, Tag[] tags, Status[] statuses) {
+	public Chars() {
+	}
+	public Chars(string meme, Stats stat, Skill[] skills, Tag[] tags, Status[] statuses) {
 		this.meme = meme;
 		this.stat = stat;
 		this.skills = skills;

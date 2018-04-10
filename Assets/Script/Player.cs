@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player{
-	public string name;
+public class Player:MonoBehaviour{
+	public string pName;
 	private int level;
 	private int money;
 	private int gem;
+	private Meme[] meme;
+	private Inventory inv;
 
 	// Use this for initialization
 	void Start () {

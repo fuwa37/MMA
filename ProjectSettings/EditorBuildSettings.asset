@@ -14,3 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Map.unity
     guid: bed650d1d43213e43a225d9fee65b333
+  - enabled: 1
+    path: Assets/Scene/Enhance.unity
+    guid: fde73c5a6758faa42867bc32e7f4c4ac
+  - enabled: 1
+    path: Assets/Scene/Upgrades.unity
+    guid: 07bfbbdac81796f4e8ff191293d96c87
+  - enabled: 1
+    path: Assets/Scene/Inventory.unity
+    guid: 27ef8f7e98096794685143c38f984ee6

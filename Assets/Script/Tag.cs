@@ -2,5 +2,7 @@
 
 public struct Tag
 {
-	string name;
+	public enum tags{
+		
+	}
 }

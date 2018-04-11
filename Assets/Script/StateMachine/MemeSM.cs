@@ -25,7 +25,6 @@ public class MemeSM : MonoBehaviour
 	}
 
 	void Update(){
-		Debug.Log (curState);
 		switch (curState) {
 		case(charState.ACTION):
 			{

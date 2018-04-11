@@ -32,12 +32,25 @@ public class BattleSM : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		//Debug.Log (action.Count);
 		switch(bs){
 		case(battleState.WAIT):{
-				Debug.Log (bs);
+				if (action.Count>0){
+					bs = battleState.ACTION;
+				}
 				break;
 			}
 		case(battleState.ACTION):{
+				GameObject atkp = GameObject.Find(action[0].meme);
+				Debug.Log (action[0].meme);
+				Debug.Log (action[0].atk);
+				Debug.Log (action[0].def);
+				Debug.Log (atkp);
+				if (action[0].type=="Enemy"){
+					EnemySM ESM = atkp.GetComponent <EnemySM> ();
+					ESM.atktarget = action [0].def;
+					ESM.curState = EnemySM.enemyState.ACTION;
+				}
 				break;
 			}
 		case(battleState.PERFORME):{

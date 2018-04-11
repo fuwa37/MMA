@@ -19,7 +19,7 @@ public class EnemySM : MonoBehaviour
 	public Vector3 ipos;
 	private bool action=false;
 	public GameObject atktarget;
-	private float animSpeed=5f;
+	private float animSpeed=2f;
 
 	public EnemySM ()
 	{

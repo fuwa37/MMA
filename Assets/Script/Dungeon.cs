@@ -3,10 +3,10 @@
 public class Dungeon
 {
 	public string name;
-	private int stage;
-	private Enemy[] enemy;
-	private bool gameOver;
-	private Player player;
+	public int stage;
+	public Enemy[] enemy;
+	public bool gameOver;
+	public Player player;
 	public Dungeon ()
 	{
 	}

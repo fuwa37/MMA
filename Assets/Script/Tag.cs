@@ -1,4 +1,6 @@
-﻿public struct Tag
+﻿using System;
+
+public struct Tag
 {
 	string name;
 }

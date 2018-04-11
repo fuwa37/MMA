@@ -1,10 +1,12 @@
 ﻿using System;
-	public class Map
-	{
+
+public class Map
+{
 	private Dungeon[] dungeons;
-		public Map ()
-		{
-		}
+
+	public Map ()
+	{
 	}
+}
 
 

@@ -1,8 +1,11 @@
-﻿public struct Stats
+﻿using System;
+
+[System.Serializable]
+public struct Stats
 {
-	float HP;
-	float MP;
-	int level;
-	float atkP;
-	float defP;
+	public float HP;
+	public float MP;
+	public int level;
+	public float atkP;
+	public float defP;
 }

@@ -1,4 +1,6 @@
-﻿public struct Skill
+﻿using System;
+
+public struct Skill
 {
 	string name;
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 
-	public class Item
+public class Item
+{
+	public Item ()
 	{
-		public Item ()
-		{
-		}
 	}
+}
 

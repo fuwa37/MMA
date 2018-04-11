@@ -1,4 +1,6 @@
-﻿public struct Status
+﻿using System;
+
+public struct Status
 {
 	string name;
 }

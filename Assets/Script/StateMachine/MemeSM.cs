@@ -11,17 +11,20 @@ public class MemeSM : MonoBehaviour
 		WAITING,
 		SELECTED,
 		DEAD,
+		ADDTOLIST,
 	}
 
 	public charState curState;
+	public GameObject Selector;
 
 	public MemeSM ()
 	{
 	}
 
 	void Start(){
-		curState = charState.WAITING;
-		BSM = GameObject.Find ("BattleSystem").GetComponent <BattleSM>();
+		curState = charState.ADDTOLIST;
+		Selector.SetActive (false);
+		BSM = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent <BattleSM>();
 	}
 
 	void Update(){
@@ -42,6 +45,12 @@ public class MemeSM : MonoBehaviour
 			{
 				break;
 			}
+		case(charState.ADDTOLIST):
+			{
+				BSM.playerMeme.Add (this.gameObject);
+				curState = charState.WAITING;
+				break;
+			}
 		}
 	}
 
@@ -49,6 +58,10 @@ public class MemeSM : MonoBehaviour
 		TurnHandler atking = new TurnHandler ();
 		atking.meme = meme.meme;
 		atking.atk = this.gameObject;
+	}
+
+	void OnMouseDown(){
+		curState = charState.SELECTED;
 	}
 }
 

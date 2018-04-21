@@ -8,24 +8,41 @@ public class BattleSM : MonoBehaviour
 	public enum battleState{
 		WAIT,
 		ACTION,
-		PERFORME,
+		PERFORM,
+	}
+
+	public enum playerState{
+		WAITING,
+		SELECT,
+		INPUT,
+		DONE,
 	}
 
 	public battleState bs;
+	public playerState ps;
 
-	public List<TurnHandler> action=new List<TurnHandler> ();
+	public List<TurnHandler> action = new List<TurnHandler> ();
 
-	public List<GameObject> memeP=new List<GameObject> ();
-	public List<GameObject> enemyE=new List<GameObject> ();
+	public List<GameObject> memeP = new List<GameObject> ();
+	public List<GameObject> enemyE = new List<GameObject> ();
+
+	public List<GameObject> playerMeme = new List<GameObject> ();
+	public TurnHandler playerHandler;
+
+	public GameObject playerUI;
+	public GameObject enemyUI;
 
 
 	// Use this for initialization
 	void Start ()
 	{
-		Debug.Log ("aaaaaaa");
 		bs = battleState.WAIT;
+		ps = playerState.SELECT;
 		memeP.AddRange(GameObject.FindGameObjectsWithTag("Meme"));
 		enemyE.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+
+		playerUI.SetActive (false);
+		enemyUI.SetActive (false);
 	
 	}
 	
@@ -42,18 +59,36 @@ public class BattleSM : MonoBehaviour
 			}
 		case(battleState.ACTION):{
 				GameObject atkp = GameObject.Find(action[0].meme);
-				Debug.Log (action[0].meme);
-				Debug.Log (action[0].atk);
-				Debug.Log (action[0].def);
-				Debug.Log (atkp);
 				if (action[0].type=="Enemy"){
 					EnemySM ESM = atkp.GetComponent <EnemySM> ();
 					ESM.atktarget = action [0].def;
 					ESM.curState = EnemySM.enemyState.ACTION;
 				}
+
+				bs = battleState.PERFORM;
 				break;
 			}
-		case(battleState.PERFORME):{
+		case(battleState.PERFORM):{
+				break;
+			}
+		}
+
+		switch(ps){
+		case(playerState.WAITING):{
+				break;
+			}
+		case(playerState.SELECT):{
+				if (playerMeme.Count>0){
+					playerMeme [0].transform.Find ("Selector").gameObject.SetActive (true);
+					playerUI.SetActive (true);
+					ps = playerState.WAITING;
+				}
+				break;
+			}
+		case(playerState.INPUT):{
+				break;
+			}
+		case(playerState.DONE):{
 				break;
 			}
 		}

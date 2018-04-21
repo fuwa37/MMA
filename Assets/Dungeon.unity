@@ -286,11 +286,11 @@ MonoBehaviour:
   meme:
     meme: Meme
     stat:
-      HP: 0
-      MP: 0
-      level: 0
-      atkP: 0
-      defP: 0
+      HP: 10000
+      MP: 1000
+      level: 1
+      atkP: 100
+      defP: 100
     pos: 0
   BSM: {fileID: 0}
   curState: 0
@@ -475,11 +475,11 @@ MonoBehaviour:
   enemy:
     meme: Enemy
     stat:
-      HP: 0
-      MP: 0
-      level: 0
-      atkP: 0
-      defP: 0
+      HP: 10000
+      MP: 1000
+      level: 1
+      atkP: 100
+      defP: 100
     pos: 0
   curState: 0
   ipos: {x: 0, y: 0, z: 0}

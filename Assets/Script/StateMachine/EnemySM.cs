@@ -19,14 +19,13 @@ public class EnemySM : MonoBehaviour
 	public Vector3 ipos;
 	private bool action=false;
 	public GameObject atktarget;
-	private float animSpeed=5f;
+	private float animSpeed=4f;
 
 	public EnemySM ()
 	{
 	}
 
 	void Start(){
-		Debug.Log ("aaaaaaa");
 		curState = enemyState.WAITING;
 		BSM = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent <BattleSM>();
 		ipos = transform.position;
@@ -53,6 +52,7 @@ public class EnemySM : MonoBehaviour
 			}
 		case(enemyState.DEAD):
 			{
+				//Debug.Log ("DEAD");
 				break;
 			}
 		}
@@ -76,16 +76,34 @@ public class EnemySM : MonoBehaviour
 			yield break;
 		}
 
+		action = true;
+
 		Vector3 targetpos = new Vector3(atktarget.transform.position.x-1.5f,atktarget.transform.position.y,atktarget.transform.position.z);
 
-		while(move(targetpos)){
+		while(movetarget(targetpos)){
 			yield return null;
 		}
 
-		action = true;
+		yield return new WaitForSeconds (0.5f);
+
+		Vector3 spos = ipos; 
+
+		while(moveipos(spos)){
+			yield return null;
+		}
+
+		BSM.action.RemoveAt (0);
+		BSM.bs = BattleSM.battleState.WAIT;
+
+		action = false;
+		curState = enemyState.DEAD;
 	}
 
-	private bool move(Vector3 target){
+	private bool movetarget(Vector3 target){
+		return target != (transform.position = Vector3.MoveTowards (transform.position, target, animSpeed * Time.deltaTime));
+	}
+
+	private bool moveipos(Vector3 target){
 		return target != (transform.position = Vector3.MoveTowards (transform.position, target, animSpeed * Time.deltaTime));
 	}
 }

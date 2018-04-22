@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class EnemySM : MonoBehaviour
@@ -8,6 +9,7 @@ public class EnemySM : MonoBehaviour
 	private BattleSM BSM;
 
 	public enum enemyState{
+		PROCESSING,
 		ACTION,
 		WAITING,
 		CHOOSE,
@@ -15,7 +17,10 @@ public class EnemySM : MonoBehaviour
 	}
 
 	public enemyState curState;
+	public Image probar;
 
+	private float cur_cooldown = 0f;
+	private float max_cooldown = 5f;
 	public Vector3 ipos;
 	private bool action=false;
 	public GameObject atktarget;
@@ -26,7 +31,7 @@ public class EnemySM : MonoBehaviour
 	}
 
 	void Start(){
-		curState = enemyState.WAITING;
+		curState = enemyState.PROCESSING;
 		BSM = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent <BattleSM>();
 		ipos = transform.position;
 
@@ -34,9 +39,13 @@ public class EnemySM : MonoBehaviour
 
 	void Update(){
 		switch (curState) {
+		case(enemyState.PROCESSING):{
+				updatebar ();
+				break;
+			}
 		case(enemyState.ACTION):
 			{
-				StartCoroutine (aksi ());
+				//StartCoroutine (aksi ());
 				break;
 			}
 		case(enemyState.WAITING):
@@ -65,7 +74,7 @@ public class EnemySM : MonoBehaviour
 	void chooseact(){
 		TurnHandler atking = new TurnHandler ();
 		atking.meme = enemy.meme;
-		atking.type = "Musuh";
+		atking.type = "Meme";
 		atking.atk = this.gameObject;
 		atking.def = BSM.memeP [Random.Range (0, BSM.memeP.Count)];
 		BSM.collectAction (atking);
@@ -105,6 +114,15 @@ public class EnemySM : MonoBehaviour
 
 	private bool moveipos(Vector3 target){
 		return target != (transform.position = Vector3.MoveTowards (transform.position, target, animSpeed * Time.deltaTime));
+	}
+
+	void updatebar(){
+		cur_cooldown = cur_cooldown + Time.deltaTime;
+		float calc_cooldown = cur_cooldown / max_cooldown;
+		probar.transform.localScale = new Vector3 (Mathf.Clamp (calc_cooldown, 0, 1), probar.transform.localScale.y, probar.transform.localScale.z);
+		if (cur_cooldown>max_cooldown){
+			curState = enemyState.WAITING;
+		}
 	}
 }
 

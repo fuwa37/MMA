@@ -64,6 +64,12 @@ public class BattleSM : MonoBehaviour
 					ESM.atktarget = action [0].def;
 					ESM.curState = EnemySM.enemyState.ACTION;
 				}
+					
+				if (action[0].type=="Meme"){
+					MemeSM ESM = atkp.GetComponent <MemeSM> ();
+					ESM.atktarget = action [0].def;
+					ESM.curState = MemeSM.charState.ACTION;
+				}
 
 				bs = battleState.PERFORM;
 				break;
@@ -79,7 +85,7 @@ public class BattleSM : MonoBehaviour
 			}
 		case(playerState.SELECT):{
 				if (playerMeme.Count>0){
-					playerMeme [0].transform.Find ("Selector").gameObject.SetActive (true);
+					//playerMeme [0].transform.Find ("Selector").gameObject.SetActive (true);
 					playerUI.SetActive (true);
 					ps = playerState.WAITING;
 				}

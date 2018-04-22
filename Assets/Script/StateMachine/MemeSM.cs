@@ -61,7 +61,7 @@ public class MemeSM : MonoBehaviour
 	}
 
 	void OnMouseDown(){
-		curState = charState.SELECTED;
+		Debug.Log ("selected");
 	}
 }
 

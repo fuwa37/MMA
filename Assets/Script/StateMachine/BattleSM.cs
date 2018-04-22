@@ -52,7 +52,8 @@ public class BattleSM : MonoBehaviour
 		//Debug.Log (action.Count);
 		switch(bs){
 		case(battleState.WAIT):{
-				if (action.Count>0){
+				if ((action.Count>0) && (playerMeme[0].transform.Find ("Selector").gameObject.activeSelf)){
+					Debug.Log ("aaaa");
 					bs = battleState.ACTION;
 				}
 				break;

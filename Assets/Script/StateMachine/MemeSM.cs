@@ -60,7 +60,7 @@ public class MemeSM : MonoBehaviour
 			}
 		case(charState.SELECTED):
 			{
-				selected ();
+				
 				break;
 			}
 		case(charState.DEAD):
@@ -101,6 +101,7 @@ public class MemeSM : MonoBehaviour
 		BSM.bs = BattleSM.battleState.WAIT;
 
 		action = false;
+		Selector.SetActive (false);
 		isSelected = false;
 		curState = charState.WAITING;
 	}
@@ -117,6 +118,7 @@ public class MemeSM : MonoBehaviour
 
 	void OnMouseDown(){
 		Selector.SetActive (true);
+		selected ();
 		isSelected = true;
 	}
 

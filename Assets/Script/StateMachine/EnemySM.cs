@@ -45,7 +45,7 @@ public class EnemySM : MonoBehaviour
 			}
 		case(enemyState.ACTION):
 			{
-				//StartCoroutine (aksi ());
+				StartCoroutine (aksi ());
 				break;
 			}
 		case(enemyState.WAITING):
@@ -61,7 +61,7 @@ public class EnemySM : MonoBehaviour
 			}
 		case(enemyState.DEAD):
 			{
-				//Debug.Log ("DEAD");
+				Debug.Log ("DEAD");
 				break;
 			}
 		}

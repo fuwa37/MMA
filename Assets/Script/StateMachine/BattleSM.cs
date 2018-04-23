@@ -67,9 +67,9 @@ public class BattleSM : MonoBehaviour
 				}
 					
 				if (action[0].type=="Meme"){
-					MemeSM ESM = atkp.GetComponent <MemeSM> ();
-					ESM.atktarget = action [0].def;
-					ESM.curState = MemeSM.charState.ACTION;
+					MemeSM MSM = atkp.GetComponent <MemeSM> ();
+					MSM.atktarget = action [0].def;
+					MSM.curState = MemeSM.charState.ACTION;
 				}
 
 				bs = battleState.PERFORM;

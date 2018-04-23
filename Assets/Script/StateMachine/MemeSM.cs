@@ -29,11 +29,17 @@ public class MemeSM : MonoBehaviour
 	public GameObject atktarget;
 	private float animSpeed=4f;
 
+	RaycastHit hit; 
+	Ray ray; 
+	GameObject target;
+		
+
 	public MemeSM ()
 	{
 	}
 
 	void Start(){
+		Debug.Log (target);
 		curState = charState.PROCESSING;
 		Selector.SetActive (false);
 		ipos = transform.position;
@@ -53,7 +59,7 @@ public class MemeSM : MonoBehaviour
 			}
 		case(charState.WAITING):
 			{
-				if (isSelected){
+				if ((isSelected) && (target)){
 					curState = charState.ACTION;
 				}
 				break;
@@ -74,6 +80,16 @@ public class MemeSM : MonoBehaviour
 				break;
 			}
 		}
+
+		if (Input.GetMouseButtonDown(0)){ 
+			ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
+			if (Physics.Raycast (ray, out hit, 100)){ 
+				if (hit.transform.tag == "Enemy"){ 
+					target = hit.transform.gameObject;
+					target.transform.Find ("Targeted").gameObject.SetActive (true);
+				} 
+			} 
+		}
 	}
 
 	private IEnumerator aksi(){
@@ -83,7 +99,7 @@ public class MemeSM : MonoBehaviour
 
 		action = true;
 
-		Vector3 targetpos = new Vector3(atktarget.transform.position.x-1.5f,atktarget.transform.position.y,atktarget.transform.position.z);
+		Vector3 targetpos = new Vector3(target.transform.position.x-1.5f,target.transform.position.y,target.transform.position.z);
 
 		while(movetarget(targetpos)){
 			yield return null;
@@ -103,6 +119,8 @@ public class MemeSM : MonoBehaviour
 		action = false;
 		Selector.SetActive (false);
 		isSelected = false;
+		target.transform.Find ("Targeted").gameObject.SetActive (false);
+		target = null;
 		curState = charState.WAITING;
 	}
 
@@ -111,8 +129,8 @@ public class MemeSM : MonoBehaviour
 		atking.meme = meme.meme;
 		atking.type = "Musuh";
 		atking.atk = this.gameObject;
-		atking.def = BSM.enemyE [Random.Range (0, BSM.enemyE.Count)];
-		Debug.Log (atking.def);
+		atking.def = target;
+		//Debug.Log (atking.def);
 		BSM.collectAction (atking);
 	}
 

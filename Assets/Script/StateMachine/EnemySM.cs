@@ -20,7 +20,7 @@ public class EnemySM : MonoBehaviour
 	public Image probar;
 
 	private float cur_cooldown = 0f;
-	private float max_cooldown = 5f;
+	private float max_cooldown = 8f;
 	public Vector3 ipos;
 	private bool action=false;
 	public GameObject atktarget;
@@ -43,6 +43,7 @@ public class EnemySM : MonoBehaviour
 
 	void Update(){
 		enemyhp.text = enemy.stat.HP.ToString ();
+		updatehp ();
 		switch (curState) {
 		case(enemyState.PROCESSING):{
 				updatebar ();
@@ -125,11 +126,15 @@ public class EnemySM : MonoBehaviour
 	void updatebar(){
 		cur_cooldown = cur_cooldown + Time.deltaTime;
 		float calc_cooldown = cur_cooldown / max_cooldown;
-		probar.transform.localScale = new Vector3 (Mathf.Clamp (calc_cooldown, 0, 0.4f)
-			, probar.transform.localScale.y, probar.transform.localScale.z);
 		if (cur_cooldown>max_cooldown){
 			curState = enemyState.WAITING;
 		}
+	}
+
+	void updatehp(){
+		float hp = (enemy.stat.HP)/10000f;
+		probar.transform.localScale = new Vector3 (Mathf.Clamp (1, 0, hp)
+			, probar.transform.localScale.y, probar.transform.localScale.z);
 	}
 
 	void DoDamage(){

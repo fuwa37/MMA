@@ -17,6 +17,6 @@ public class LoadDungeon : MonoBehaviour {
 	}
 
 	void LS(){
-		SceneManager.LoadScene ("Assets/test/Dungeon");
+		SceneManager.LoadScene ("Dungeon");
 	}
 }

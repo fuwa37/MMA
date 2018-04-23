@@ -125,7 +125,7 @@ public class EnemySM : MonoBehaviour
 	void updatebar(){
 		cur_cooldown = cur_cooldown + Time.deltaTime;
 		float calc_cooldown = cur_cooldown / max_cooldown;
-		probar.transform.localScale = new Vector3 (Mathf.Clamp (calc_cooldown, 0, 1)
+		probar.transform.localScale = new Vector3 (Mathf.Clamp (calc_cooldown, 0, 0.4f)
 			, probar.transform.localScale.y, probar.transform.localScale.z);
 		if (cur_cooldown>max_cooldown){
 			curState = enemyState.WAITING;

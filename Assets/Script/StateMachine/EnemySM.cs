@@ -25,12 +25,16 @@ public class EnemySM : MonoBehaviour
 	private bool action=false;
 	public GameObject atktarget;
 	private float animSpeed=4f;
+	public Text enemyhp;
 
 	public EnemySM ()
 	{
 	}
 
 	void Start(){
+		//texthp = gameObject.transform.GetChild (2).gameObject;
+		enemyhp.text = enemy.stat.HP.ToString ();
+		Debug.Log (enemyhp);
 		curState = enemyState.PROCESSING;
 		BSM = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent <BattleSM>();
 		ipos = transform.position;
@@ -38,6 +42,7 @@ public class EnemySM : MonoBehaviour
 	}
 
 	void Update(){
+		enemyhp.text = enemy.stat.HP.ToString ();
 		switch (curState) {
 		case(enemyState.PROCESSING):{
 				updatebar ();
@@ -93,6 +98,7 @@ public class EnemySM : MonoBehaviour
 			yield return null;
 		}
 
+		DoDamage ();
 		yield return new WaitForSeconds (0.5f);
 
 		Vector3 spos = ipos; 
@@ -105,7 +111,7 @@ public class EnemySM : MonoBehaviour
 		BSM.bs = BattleSM.battleState.WAIT;
 
 		action = false;
-		curState = enemyState.DEAD;
+		curState = enemyState.PROCESSING;
 	}
 
 	private bool movetarget(Vector3 target){
@@ -125,5 +131,20 @@ public class EnemySM : MonoBehaviour
 			curState = enemyState.WAITING;
 		}
 	}
+
+	void DoDamage(){
+		float damage = enemy.stat.atkP;
+		atktarget.GetComponent <MemeSM>().TakeDamage (damage);
+	}
+
+	public void TakeDamage(float amount){
+		enemy.stat.HP -= amount;
+		if (enemy.stat.HP<=0){
+			curState = enemyState.DEAD;
+			Debug.Log (curState);
+		}
+	}
+
+
 }
 

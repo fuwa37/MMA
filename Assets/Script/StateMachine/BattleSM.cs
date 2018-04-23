@@ -68,7 +68,7 @@ public class BattleSM : MonoBehaviour
 					
 				if (action[0].type=="Meme"){
 					MemeSM MSM = atkp.GetComponent <MemeSM> ();
-					MSM.atktarget = action [0].def;
+					MSM.target = action [0].def;
 					MSM.curState = MemeSM.charState.ACTION;
 				}
 
@@ -87,7 +87,7 @@ public class BattleSM : MonoBehaviour
 		case(playerState.SELECT):{
 				if (playerMeme.Count>0){
 					//playerMeme [0].transform.Find ("Selector").gameObject.SetActive (true);
-					playerUI.SetActive (true);
+					//playerUI.SetActive (true);
 					ps = playerState.WAITING;
 				}
 				break;

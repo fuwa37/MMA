@@ -8,6 +8,6 @@ public class TurnHandler
 	public string type;
 	public GameObject atk;
 	public GameObject def;
-
+	public BaseAttacks choosenAtk;
 }
 

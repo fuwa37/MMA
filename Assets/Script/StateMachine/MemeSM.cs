@@ -26,12 +26,11 @@ public class MemeSM : MonoBehaviour
 	private float max_cooldown = 5f;
 	public Vector3 ipos;
 	private bool action=false;
-	public GameObject atktarget;
 	private float animSpeed=4f;
 
 	RaycastHit hit; 
 	Ray ray; 
-	GameObject target;
+	public GameObject target;
 		
 
 	public MemeSM ()
@@ -39,7 +38,6 @@ public class MemeSM : MonoBehaviour
 	}
 
 	void Start(){
-		Debug.Log (target);
 		curState = charState.PROCESSING;
 		Selector.SetActive (false);
 		ipos = transform.position;
@@ -105,6 +103,8 @@ public class MemeSM : MonoBehaviour
 			yield return null;
 		}
 
+		DoDamage ();
+
 		yield return new WaitForSeconds (0.5f);
 
 		Vector3 spos = ipos; 
@@ -130,6 +130,9 @@ public class MemeSM : MonoBehaviour
 		atking.type = "Musuh";
 		atking.atk = this.gameObject;
 		atking.def = target;
+		//int num = 1;
+		//atking.choosenAtk = meme.atklist[num];
+		//Debug.Log (atking.choosenAtk.atkDmg);
 		//Debug.Log (atking.def);
 		BSM.collectAction (atking);
 	}
@@ -154,6 +157,19 @@ public class MemeSM : MonoBehaviour
 		probar.transform.localScale = new Vector3 (Mathf.Clamp (calc_cooldown, 0, 1), probar.transform.localScale.y, probar.transform.localScale.z);
 		if (cur_cooldown>max_cooldown){
 			curState = charState.ADDTOLIST;
+		}
+	}
+
+	void DoDamage(){
+		float damage = meme.stat.atkP;
+		target.GetComponent <EnemySM>().TakeDamage (damage);
+	}
+
+	public void TakeDamage(float amount){
+		meme.stat.HP -= amount;
+		if (meme.stat.HP<=0){
+			curState = charState.DEAD;
+			Debug.Log (curState);
 		}
 	}
 }

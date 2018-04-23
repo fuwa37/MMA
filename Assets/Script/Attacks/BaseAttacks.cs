@@ -1,19 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BasicAttacks : MonoBehaviour
+[System.Serializable]
+public class BaseAttacks:MonoBehaviour
 {
-
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
+	public string atkName;
+	public string atkDesc;
+	public float atkDmg;
+	public float atkCost;
 }
 

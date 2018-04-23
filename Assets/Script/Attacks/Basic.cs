@@ -1,19 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Basic : MonoBehaviour
+public class Basic : BaseAttacks
 {
-
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
+	public Basic(){
+		atkName = "Basic";
+		atkDesc = "Basic Attack";
+		atkDmg = 10;
+		atkCost = 1;
 	}
 }
 

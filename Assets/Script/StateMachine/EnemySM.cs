@@ -68,6 +68,8 @@ public class EnemySM : MonoBehaviour
 		case(enemyState.DEAD):
 			{
 				Debug.Log ("DEAD");
+				this.transform.gameObject.SetActive (false);
+
 				break;
 			}
 		}

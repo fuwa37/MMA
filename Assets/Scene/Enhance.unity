@@ -372,8 +372,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1693576733}
   m_HandleRect: {fileID: 1693576732}
   m_Direction: 2
-  m_Value: 0.9999955
-  m_Size: 0.9644165
+  m_Value: 1
+  m_Size: 0.9644162
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -835,8 +835,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1816195248}
   m_HandleRect: {fileID: 1816195247}
   m_Direction: 0
-  m_Value: 0.00000011273578
-  m_Size: 0.6141126
+  m_Value: 0.000000112735705
+  m_Size: 0.61411244
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1530,7 +1530,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9d19af4de5f13e04baedf96b6ad8d90f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e638c26e7ece3943a39acf3647c34f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1789,7 +1789,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1146656444}
   m_HandleRect: {fileID: 1146656443}
   m_Direction: 2
-  m_Value: 0.999991
+  m_Value: 0.9999955
   m_Size: 0.9822082
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2008,8 +2008,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 270857009}
   m_HandleRect: {fileID: 270857008}
   m_Direction: 0
-  m_Value: 0.00000011273581
-  m_Size: 0.61412644
+  m_Value: 0.00000022547157
+  m_Size: 0.6141264
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2375,7 +2375,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f2a9abc015d864c4f96d1f3632169167, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3f8fae46c3794e946a17abd097eb694e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

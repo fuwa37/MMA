@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class EnemySM : MonoBehaviour
@@ -69,7 +70,7 @@ public class EnemySM : MonoBehaviour
 			{
 				Debug.Log ("DEAD");
 				this.transform.gameObject.SetActive (false);
-
+				SceneManager.LoadScene ("MainMenu");
 				break;
 			}
 		}

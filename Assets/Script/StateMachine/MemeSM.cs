@@ -27,6 +27,7 @@ public class MemeSM : MonoBehaviour
 	public Vector3 ipos;
 	private bool action=false;
 	private float animSpeed=4f;
+	public Text memehp;
 
 	RaycastHit hit; 
 	Ray ray; 
@@ -38,6 +39,7 @@ public class MemeSM : MonoBehaviour
 	}
 
 	void Start(){
+		memehp.text = meme.stat.HP.ToString ();
 		curState = charState.PROCESSING;
 		Selector.SetActive (false);
 		ipos = transform.position;
@@ -45,6 +47,8 @@ public class MemeSM : MonoBehaviour
 	}
 
 	void Update(){
+		memehp.text = meme.stat.HP.ToString ();
+		updatehp ();
 		switch (curState) {
 		case(charState.PROCESSING):{
 				updatebar ();
@@ -154,11 +158,17 @@ public class MemeSM : MonoBehaviour
 	void updatebar(){
 		cur_cooldown = cur_cooldown + Time.deltaTime;
 		float calc_cooldown = cur_cooldown / max_cooldown;
-		probar.transform.localScale = new Vector3 (Mathf.Clamp (calc_cooldown, 0, 1), probar.transform.localScale.y, probar.transform.localScale.z);
 		if (cur_cooldown>max_cooldown){
-			curState = charState.ADDTOLIST;
+			curState = charState.WAITING;
 		}
 	}
+
+	void updatehp(){
+		float hp = (meme.stat.HP)/10000f;
+		probar.transform.localScale = new Vector3 (Mathf.Clamp (1, 0, hp)
+			, probar.transform.localScale.y, probar.transform.localScale.z);
+	}
+
 
 	void DoDamage(){
 		float damage = meme.stat.atkP;

@@ -48,6 +48,7 @@ public class MemeSM : MonoBehaviour
 
 	void Update(){
 		memehp.text = meme.stat.HP.ToString ();
+		Debug.Log(memehp.text)
 		updatehp ();
 		switch (curState) {
 		case(charState.PROCESSING):{
